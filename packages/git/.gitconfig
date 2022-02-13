@@ -1,0 +1,43 @@
+[user]
+	email = koheinishino.95@gmail.com
+	name = KoheiNishino
+[alias]
+	a   = add
+	aa  = add -A
+	b   = branch
+  bd  = branch -d
+  bm  = branch -m
+	co  = checkout
+	cob = checkout -b
+	c   = commit
+  ca  = commit --amend
+	cm  = commit -m
+  d   = diff
+  f   = fetch
+	fup = fetch upstream
+  l   = log
+  m   = merge
+	pso = push origin
+  pso = push origin HEAD
+	pl  = pull
+	plo = pull origin
+  rs  = reset
+  rv  = revert
+  s   = status -sb
+[core]
+	excludesfile = /Users/koheinishino/.gitignore_global
+  editor = nvim
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+[delta]
+  line-numbers = true
+  side-by-side = true
+[interactive]
+  diffFilter = delta --color-only
