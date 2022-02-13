@@ -1,0 +1,9 @@
+add_newline = true
+
+[character]
+success_symbol = "🐈 [❯](bold green)"
+error_symbol = "🐈 [❯](bold red)"
+
+[directory]
+truncation_length = 100
+truncate_to_repo = false
