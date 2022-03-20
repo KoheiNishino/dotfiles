@@ -1,3 +1,6 @@
+"言語設定
+language en_US
+
 "コマンドの際にはzshを使う
 set shell=/bin/zsh
 
