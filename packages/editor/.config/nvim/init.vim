@@ -4,8 +4,8 @@ language en_US
 "コマンドの際にはzshを使う
 set shell=/bin/zsh
 
-""行番号を表示
-"set number
+"行番号を表示
+set number
 
 "画面を縦分割する際に右に開く
 set splitright
@@ -33,6 +33,9 @@ set clipboard=unnamed
 
 "SyntaxをEnable
 syntax on
+
+"ESC の代わりに jj で Insert mode -> Normal mode
+inoremap <silent> jj <ESC>
 
 "vim-plug
 "call plug#begin([PLUGIN_DIR])
