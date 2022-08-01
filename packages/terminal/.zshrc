@@ -1,4 +1,5 @@
 export PATH=$PATH:$HOME/scripts
+export PATH="/usr/local/sbin:$PATH"
 
 # -----------------------------
 # Aliases
@@ -58,6 +59,7 @@ autoload -Uz compinit && compinit -i
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
 . /usr/local/opt/asdf/libexec/asdf.sh
+alias brew="env PATH=${PATH/\/Users\/${USER}\/\.asdf\/shims:/} brew"
 
 # -----------------------------
 # History
