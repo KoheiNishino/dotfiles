@@ -38,6 +38,7 @@ brew "wget"
 brew "zoxide"
 brew "zsh"
 brew "zsh-autosuggestions"
+brew "zsh-completions"
 
 cask "1password"
 cask "alfred"
