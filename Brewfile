@@ -41,7 +41,7 @@ brew "zsh-autosuggestions"
 brew "zsh-completions"
 
 cask "1password"
-caks "alacritty"
+cask "alacritty"
 cask "appcleaner"
 cask "cleanmymac"
 cask "discord"
