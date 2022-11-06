@@ -42,9 +42,8 @@ brew "zsh-completions"
 
 cask "1password"
 caks "alacritty"
-cask "alfred"
 cask "appcleaner"
-cask "clipy"
+cask "cleanmymac"
 cask "discord"
 cask "figma"
 cask "firefox"
@@ -58,11 +57,9 @@ cask "hammerspoon"
 cask "iina"
 cask "iterm2"
 cask "notion"
+cask "raycast"
 cask "sequel-ace"
 cask "slack"
 cask "spotify"
 cask "visual-studio-code"
 cask "zoom"
-
-mas "CleanMyMac X", id: 1339170533
-mas "Magnet", id: 441258766
