@@ -1,0 +1,3 @@
+#!/bin/sh
+
+npx @squoosh/cli --webp auto "$1"
