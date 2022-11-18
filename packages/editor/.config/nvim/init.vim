@@ -37,6 +37,9 @@ syntax on
 "ESC の代わりに jj で Insert mode -> Normal mode
 inoremap <silent> jj <ESC>
 
+"InsertモードからNormalモードへ戻った時に日本語能力を解除
+autocmd InsertLeave * :silent !/usr/local/bin/im-select com.google.inputmethod.Japanese.Roman
+
 "vim-plug
 "call plug#begin([PLUGIN_DIR])
 
