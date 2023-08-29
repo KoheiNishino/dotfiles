@@ -1,14 +1,23 @@
-export PATH=$PATH:$HOME/scripts
 export PATH="/usr/local/sbin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # -----------------------------
 # Aliases
 # -----------------------------
 
+alias c="code ."
+alias g='cd "$(ghq list --full-path | awk -F "/" '\''{print $(NF-1) "/" $NF "\t" $0}'\'' | fzf --with-nth=1 | awk '\''{print $2}'\'')"'
+alias o="open ."
+alias p="pnpm"
+alias nui="npx npm-check --update"
+alias yui="yarn upgrade-interactive --latest"
+alias pui="pnpm upgrade -i --latest"
+
 alias cat="bat"
 alias du="dust"
 alias ls="exa"
-alias ll="ls -lah --git"
+alias ll="ls -ahl --git"
 alias lt="ll -TL 3 --ignore-glob=.git"
 alias ps="procs"
 
@@ -24,11 +33,6 @@ alias view='nvim -R'
 # -----------------------------
 # Shorthand Aliases
 # -----------------------------
-
-alias vh='vagrant halt'
-alias vss='vagrant ssh'
-alias vst='vagrant status'
-alias vu='vagrant up'
 
 alias relogin="exec $SHELL -l"
 alias sz='source ~/.zshrc'
@@ -48,6 +52,7 @@ alias -g GI='| grep -ir --color=auto'
 # eval
 # -----------------------------
 
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
@@ -55,11 +60,7 @@ eval "$(zoxide init zsh)"
 # Other
 # -----------------------------
 
-autoload -Uz compinit && compinit -i
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
-. /usr/local/opt/asdf/libexec/asdf.sh
-alias brew="env PATH=${PATH/\/Users\/${USER}\/\.asdf\/shims:/} brew"
 
 # -----------------------------
 # History
