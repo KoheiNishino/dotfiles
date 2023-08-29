@@ -71,7 +71,7 @@ defaults write com.apple.screencapture name SS
 defaults write com.apple.Siri StatusMenuVisible -bool false
 
 # メニューバーにSiriを表示：チェックを外す
-defaults write com.apple.Siri VoiceTriggerUserEnbaled -bool false
+defaults write com.apple.Siri VoiceTriggerUserEnabled -bool false
 
 # -----------------
 # Other
