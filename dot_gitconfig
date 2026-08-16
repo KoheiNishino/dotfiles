@@ -1,0 +1,49 @@
+[user]
+	email = 58029195+KoheiNishino@users.noreply.github.com
+	name = Kohei Nishino
+[alias]
+  a   = add
+  aa  = add -A
+  b   = branch
+  bd  = branch -d
+  bm  = branch -m
+  co  = checkout
+  cob = checkout -b
+  c   = commit
+  ca  = commit --amend
+  cm  = commit -m
+  cam = commit --allow-empty -m
+  d   = diff
+  f   = fetch --prune
+  fup = fetch upstream
+  l   = log
+  m   = merge
+  pso = push origin
+  pso = push origin HEAD
+  pl  = pull
+  plo = pull origin
+  rs  = reset
+  rv  = revert
+  s   = status -sb
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = code --wait
+[init]
+  defaultBranch = main
+[pull]
+  rebase = false
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+  show = delta
+[delta]
+  line-numbers = true
+  side-by-side = true
+[interactive]
+  diffFilter = delta --color-only
+[filter "lfs"]
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
