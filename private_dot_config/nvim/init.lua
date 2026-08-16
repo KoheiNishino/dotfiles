@@ -6,9 +6,6 @@ vim.cmd("language en_US")
 -- カラースキーム
 vim.cmd("colorscheme cyberdream")
 
--- コマンドの際にはzshを使う
-vim.opt.shell = "/bin/zsh"
-
 -- 行番号を表示
 vim.opt.number = true
 
@@ -45,12 +42,6 @@ vim.opt.tabstop = 2
 -- タブの入力の際にスペース
 vim.opt.expandtab = true
 
--- ワードラッピングなし
-vim.opt.textwidth = 0
-
--- 自動インデント
-vim.opt.autoindent = true
-
 -- Searchのハイライト
 vim.opt.hlsearch = true
 
@@ -63,9 +54,6 @@ vim.opt.mouse = ""
 -- lualineを表示
 vim.opt.cmdheight = 0
 vim.opt.showmode = false
-
--- リーダーキー
-vim.g.mapleader = " "
 
 -- SyntaxをEnable
 -- vim.cmd("syntax on")
