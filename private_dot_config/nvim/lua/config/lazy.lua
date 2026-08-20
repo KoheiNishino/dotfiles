@@ -107,6 +107,7 @@ require("lazy").setup({
 			opts = {
 				keymap = {
 					preset = "super-tab",
+					["<CR>"] = { "accept", "fallback" },
 				},
 			},
 		},
