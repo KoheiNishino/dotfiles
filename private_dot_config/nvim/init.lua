@@ -55,6 +55,9 @@ vim.opt.showmode = false
 -- SyntaxをEnable
 -- vim.cmd("syntax on")
 
+-- floatingを角丸にする
+vim.o.winborder = "rounded"
+
 -- diagnosticをインライン表示
 vim.diagnostic.config({
 	virtual_text = true,
