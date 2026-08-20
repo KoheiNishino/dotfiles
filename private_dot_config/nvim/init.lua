@@ -3,9 +3,6 @@ require("config.lazy")
 -- 言語設定
 vim.cmd("language en_US")
 
--- カラースキーム
-vim.cmd("colorscheme cyberdream")
-
 -- 行番号を表示
 vim.opt.number = true
 
