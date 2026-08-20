@@ -100,6 +100,17 @@ end, {
 	desc = "Fix typo",
 })
 
+vim.keymap.set("n", "<leader>gs", function()
+	require("gitsigns").stage_hunk()
+end, { desc = "Git stage hunk" })
+
+vim.keymap.set("n", "<leader>gp", function()
+	require("gitsigns").preview_hunk()
+end, { desc = "Git preview hunk" })
+vim.keymap.set("n", "<leader>gg", function()
+	vim.cmd("terminal lazygit")
+end, { desc = "LazyGit" })
+
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
