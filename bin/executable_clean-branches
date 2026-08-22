@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+usage() {
+  cat <<EOF
+Usage:
+  clean-branches              Delete all local branches except main/master.
+  clean-branches -n           Dry run.
+  clean-branches --dry-run    Dry run.
+  clean-branches -h           Show help.
+  clean-branches --help       Show help.
+EOF
+}
+
+current_branch=$(git branch --show-current)
+
+case "${1:-}" in
+  "")
+    ;;
+  -n|--dry-run)
+    dry_run=true
+    ;;
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  *)
+    echo "Error: unknown option: $1"
+    usage
+    exit 1
+    ;;
+esac
+
+if [[ "$current_branch" != "main" && "$current_branch" != "master" ]]; then
+  echo "Error: current branch must be main or master."
+  exit 1
+fi
+
+branches=$(git branch --format='%(refname:short)' | grep -vE '^(main|master)$' || true)
+
+if [[ "$dry_run" == true ]]; then
+  echo "$branches"
+elif [[ -n "$branches" ]]; then
+  git branch -D $branches
+fi
