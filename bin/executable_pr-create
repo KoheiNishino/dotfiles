@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+current_branch=$(git branch --show-current)
+
+if [[ "$current_branch" == "main" || "$current_branch" == "master" ]]; then
+  echo "Error: cannot create a PR from $current_branch."
+  exit 1
+fi
+
+default_branch=$(
+  git symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null |
+    sed 's|^origin/||'
+)
+
+base_branch=$(
+  {
+    printf '%s\n' "$default_branch" develop staging
+    git branch --format='%(refname:short)'
+  } |
+    grep -vE "^(${current_branch}|${default_branch}|develop|staging)$" |
+    fzf --prompt="Base branch: "
+)
+
+[[ -z "$base_branch" ]] && exit 1
+
+body_file=$(mktemp)
+trap 'rm -f "$body_file"' EXIT
+
+templates=()
+
+[[ -f .github/PULL_REQUEST_TEMPLATE.md ]] &&
+  templates+=(.github/PULL_REQUEST_TEMPLATE.md)
+
+if [[ -d .github/PULL_REQUEST_TEMPLATE ]]; then
+  while IFS= read -r template; do
+    templates+=("$template")
+  done < <(find .github/PULL_REQUEST_TEMPLATE -type f -name '*.md' | sort)
+fi
+
+if [[ ${#templates[@]} -eq 1 ]]; then
+  cp "${templates[0]}" "$body_file"
+elif [[ ${#templates[@]} -gt 1 ]]; then
+  template=$(printf '%s\n' "${templates[@]}" | fzf --prompt="PR template: ")
+  [[ -n "$template" ]] && cp "$template" "$body_file"
+fi
+
+"${EDITOR:-vim}" "$body_file"
+
+echo
+echo "Base: $base_branch"
+echo "Head: $current_branch"
+
+read -r -p "Create pull request? [y/N] " answer
+
+[[ "$answer" =~ ^[Yy]$ ]] || exit 0
+
+git push -u origin "$current_branch" &&
+  gh pr create \
+    --base "$base_branch" \
+    --body-file "$body_file"
