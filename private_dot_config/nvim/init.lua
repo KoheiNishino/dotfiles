@@ -121,13 +121,11 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help ta
 -- Oil
 -- vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
--- Vim起動時にIMEを英数にする
-vim.fn.system("im-select com.apple.keylayout.ABC")
-
--- InsertモードからNormalモードへ戻った時に日本語入力を解除
-vim.api.nvim_create_autocmd("InsertLeave", {
-	pattern = "*",
-	command = "silent !/opt/homebrew/bin/im-select com.apple.keylayout.ABC",
+-- 日本語入力を解除
+vim.api.nvim_create_autocmd({ "VimEnter", "InsertLeave", "CmdlineLeave" }, {
+	callback = function()
+		vim.fn.system({ "/opt/homebrew/bin/im-select", "com.apple.keylayout.ABC" })
+	end,
 })
 
 -- https://vim-jp.org/vim-users-jp/2011/02/20/Hack-202.html
