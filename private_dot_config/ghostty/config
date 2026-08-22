@@ -1,0 +1,54 @@
+# ============================================================
+# Appearance
+# ============================================================
+
+# 背景の透明度
+background-opacity = 0.92
+
+# 背景のぼかし強度
+background-blur = 20
+
+# カーソル
+cursor-style = bar
+
+# フォント
+font-family = UDEV Gothic 35JPDOC
+
+# マウス入力中はカーソルを隠す
+mouse-hide-while-typing = true
+
+# OptionキーをAltキーとして扱う
+macos-option-as-alt = true
+
+# テーマ
+theme = Apple System Colors
+
+# ウィンドウ左右の余白
+window-padding-x = 10
+
+# ウィンドウ上下の余白
+window-padding-y = 8
+
+# ウィンドウの余白を左右・上下で均等に配分
+window-padding-balance = true
+
+# ウィンドウの状態を常に保存
+window-save-state = always
+
+
+# ============================================================
+# Keybinds
+# ============================================================
+
+# Alt+Shift+hjklでペインをリサイズ
+keybind = alt+shift+h=resize_split:left,10
+keybind = alt+shift+j=resize_split:down,10
+keybind = alt+shift+k=resize_split:up,10
+keybind = alt+shift+l=resize_split:right,10
+
+# Ctrl+Shift+hjklでペインを移動
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
+
