@@ -3,7 +3,7 @@
 usage() {
   cat <<EOF
 Usage:
-  clean-branches              Delete all local branches except main/master.
+  clean-branches              Delete all merged local branches except main/master.
   clean-branches -n           Dry run.
   clean-branches --dry-run    Dry run.
   clean-branches -h           Show help.
@@ -35,10 +35,10 @@ if [[ "$current_branch" != "main" && "$current_branch" != "master" ]]; then
   exit 1
 fi
 
-branches=$(git branch --format='%(refname:short)' | grep -vE '^(main|master)$' || true)
+branches=$(git branch --merged | grep -vE '^€*?€s*(main|master)$' | sed 's/^[* ]*//' || true)
 
 if [[ "$dry_run" == true ]]; then
   echo "$branches"
 elif [[ -n "$branches" ]]; then
-  git branch -D $branches
+  git branch -d $branches
 fi
