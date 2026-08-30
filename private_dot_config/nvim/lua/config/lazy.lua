@@ -131,7 +131,11 @@ require("lazy").setup({
 				},
 			},
 			lazy = false,
-			opts = {},
+			opts = {
+				view_options = {
+					show_hidden = true,
+				},
+			},
 		},
 		{
 			"nvim-lualine/lualine.nvim",
