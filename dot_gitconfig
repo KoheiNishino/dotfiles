@@ -12,6 +12,7 @@
   cm  = commit -m
   cam = commit --allow-empty -m
   d   = diff
+  dw  = diff -w
   f   = fetch --prune
   l   = log
   s   = status -sb
