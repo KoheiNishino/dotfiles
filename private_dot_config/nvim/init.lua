@@ -110,6 +110,11 @@ end, { desc = "Git preview hunk" })
 vim.keymap.set("n", "<leader>gg", function()
 	vim.cmd("terminal lazygit")
 end, { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>yp", function()
+	local path = vim.fn.expand("%")
+	vim.fn.setreg("+", path)
+	vim.notify("Copied: " .. path)
+end, { desc = "Yank file path" })
 
 local builtin = require("telescope.builtin")
 
