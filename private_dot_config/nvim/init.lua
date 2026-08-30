@@ -116,6 +116,17 @@ vim.keymap.set("n", "<leader>yp", function()
 	vim.notify("Copied: " .. path)
 end, { desc = "Yank file path" })
 
+-- 検索結果を中央表示
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz")
+
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+	pattern = { "/", "?" },
+	callback = function()
+		vim.cmd("normal! zz")
+	end,
+})
+
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
