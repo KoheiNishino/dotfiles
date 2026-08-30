@@ -1,0 +1,19 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# User binaries
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+# Environment variables
+export EDITOR="nvim"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# Vite+
+. "$HOME/.vite-plus/env"
+
+# XDG config
+export XDG_CONFIG_HOME="$HOME/.config"

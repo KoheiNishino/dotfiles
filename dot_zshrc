@@ -1,0 +1,100 @@
+# Keybindings
+bindkey -e
+
+# Functions
+gr() {
+  cd "$(git rev-parse --show-toplevel)"
+}
+
+mkcd() {
+  mkdir -p "$1" && cd "$1"
+}
+
+j() {
+  local dir
+  dir=$(ghq list --full-path |
+    awk -F/ '{print $(NF-1) "/" $NF "\t" $0}' |
+    fzf --with-nth=1 |
+    cut -f2-)
+
+  [[ -n "$dir" ]] && cd "$dir"
+}
+
+# fzf
+export FZF_CTRL_T_COMMAND='fd --type f --strip-cwd-prefix'
+source <(fzf --zsh)
+
+# Aliases
+
+## General
+# alias c="code ."
+alias o="open ."
+
+## Package Manager
+alias p="pnpm"
+alias pui="pnpm upgrade -i --latest"
+# alias n="npm"
+# alias nr="npm run"
+# alias y="yarn"
+# alias nui="npx npm-check --update"
+# alias yui="yarn upgrade-interactive --latest"
+
+## CLI Tools
+alias cat="bat"
+alias du="dust"
+alias ls="eza"
+alias ll="ls -ahl --git"
+alias lt="ll -TL 3 --ignore-glob=.git"
+alias ps="procs"
+
+## Git
+alias g="git"
+alias cb="git branch --show-current | pbcopy"
+alias lg="lazygit"
+
+## File Operations
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+alias mkdir="mkdir -p"
+
+## Editor
+alias vi="nvim"
+alias vim="nvim"
+alias view="nvim -R"
+
+## Docker
+alias d="docker"
+alias dc="docker compose"
+alias dcr="docker compose run --rm"
+alias dps="docker ps"
+alias dpsa="docker ps -a"
+
+## Other
+alias cz="chezmoi"
+
+# Shorthand Aliases
+alias rl="exec $SHELL -l"
+alias vsc="vim ~/.ssh/config"
+alias vz="vim ~/.zshrc"
+
+# Global Aliases
+alias -g L='| less'
+alias -g H='| head'
+alias -g G='| grep --color=auto'
+alias -g GI='| grep -ir --color=auto'
+
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt share_history
+setopt no_beep
+
+# Initialization
+eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
