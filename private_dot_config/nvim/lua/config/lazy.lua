@@ -51,8 +51,19 @@ require("lazy").setup({
 			end,
 		},
 		{
-			"mason-org/mason.nvim",
-			opts = {},
+			"mason-org/mason-lspconfig.nvim",
+			dependencies = {
+				{ "mason-org/mason.nvim", opts = {} },
+				"neovim/nvim-lspconfig",
+			},
+			opts = {
+				ensure_installed = {
+					"lua_ls",
+					"vtsls",
+					"eslint",
+					"biome",
+				},
+			},
 		},
 		{
 			"stevearc/conform.nvim",
@@ -97,8 +108,6 @@ require("lazy").setup({
 						})
 					end,
 				})
-
-				vim.lsp.enable({ "lua_ls", "vtsls", "eslint", "biome" })
 			end,
 		},
 		{
