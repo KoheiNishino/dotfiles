@@ -30,4 +30,4 @@
 [push]
   autoSetupRemote = true
 [pull]
-  rebase: false
+  rebase = false
