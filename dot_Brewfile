@@ -25,6 +25,7 @@ brew "sk"
 brew "starship"
 brew "tealdeer"
 brew "tree"
+brew "tree-sitter-cli"
 brew "wget"
 brew "yq"
 
