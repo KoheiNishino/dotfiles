@@ -123,8 +123,28 @@ require("lazy").setup({
 		{
 			"nvim-telescope/telescope.nvim",
 			version = "*",
-			dependencies = {
-				"nvim-lua/plenary.nvim",
+			dependencies = { "nvim-lua/plenary.nvim" },
+			opts = {
+				pickers = {
+					find_files = {
+						find_command = {
+							"rg",
+							"--files",
+							"--hidden",
+							"--glob",
+							"!.git/",
+						},
+					},
+					live_grep = {
+						additional_args = function()
+							return {
+								"--hidden",
+								"--glob",
+								"!.git/",
+							}
+						end,
+					},
+				},
 			},
 		},
 		{
