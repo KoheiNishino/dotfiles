@@ -4,3 +4,5 @@ git:
       command: delta --paging=never
 gui:
   sidePanelWidth: 0.2
+
+promptToReturnFromSubprocess: false
