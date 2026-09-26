@@ -164,7 +164,9 @@ require("lazy").setup({
 			dependencies = {
 				{
 					"nvim-mini/mini.icons",
-					opts = {},
+					opts = {
+						skip_confirm_for_simple_edits = true,
+					},
 				},
 			},
 			lazy = false,
