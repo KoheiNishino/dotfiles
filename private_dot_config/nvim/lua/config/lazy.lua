@@ -31,18 +31,20 @@ local function get_js_formatter(bufnr)
 end
 
 -- https://scribble.washo3.com/vimdoc-ja-lazy-nvim-local-changes/
+local function clean_vimdoc_ja()
+	vim.fn.system({
+		"git",
+		"-C",
+		vim.fn.stdpath("data") .. "/lazy/vimdoc-ja",
+		"checkout",
+		"--",
+		"doc/tags-ja",
+	})
+end
+
 vim.api.nvim_create_autocmd("User", {
-	pattern = "LazyUpdatePre",
-	callback = function()
-		vim.fn.system({
-			"git",
-			"-C",
-			vim.fn.stdpath("data") .. "/lazy/vimdoc-ja",
-			"checkout",
-			"--",
-			"doc/tags-ja",
-		})
-	end,
+	pattern = { "LazyUpdatePre", "LazyCheckPre" },
+	callback = clean_vimdoc_ja,
 })
 
 -- Setup lazy.nvim
