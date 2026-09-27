@@ -1,4 +1,21 @@
 # Functions
+git-restore-to-branch-base() {
+  local base="${1:-main}"
+  local merge_base
+
+  merge_base="$(git merge-base "$base" HEAD)" || return 1
+
+  echo "Restore staged/worktree files to merge-base:"
+  echo "  base: $base"
+  echo "  commit: $merge_base"
+
+  git restore \
+    --source="$merge_base" \
+    --staged \
+    --worktree \
+    -- .
+}
+
 gr() {
   cd "$(git rev-parse --show-toplevel)"
 }
