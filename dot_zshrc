@@ -34,6 +34,20 @@ ghq-search() {
   [[ -n "$dir" ]] && cd "$dir"
 }
 
+rgfiles() {
+	if [[ -z "$1" ]]; then
+		echo "usage: rgfiles '<glob>'"
+		return 1
+	fi
+
+	local glob="$1"
+	local files=("${(@f)$(rg --files -g "$glob")}")
+
+	printf '%s\n' "${files[@]}"
+	echo "count: ${#files[@]}"
+}
+
+
 # Keybindings
 bindkey -e
 zle -N ghq-search
