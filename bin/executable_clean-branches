@@ -35,10 +35,7 @@ if [[ "$current_branch" != "main" && "$current_branch" != "master" ]]; then
   exit 1
 fi
 
-branches=$(
-  git branch --merged --format='%(refname:short)' |
-    awk '$0 != "main" && $0 != "master"'
-)
+branches=$(git branch --merged | sed 's/^[* ]*//' | grep -vE '^(main|master)$' || true)
 
 if [[ "$dry_run" == true ]]; then
   echo "$branches"
