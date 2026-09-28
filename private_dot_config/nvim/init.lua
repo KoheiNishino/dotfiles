@@ -1,7 +1,7 @@
 require("config.lazy")
 
 -- 言語設定
-vim.cmd("language en_US")
+vim.cmd("language en_US.UTF-8")
 
 -- 行番号を表示
 vim.opt.number = true
