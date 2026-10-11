@@ -17,3 +17,6 @@ export PATH="$PNPM_HOME:$PATH"
 
 # XDG config
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# Local settings
+[[ -f ~/.zprofile.local ]] && source ~/.zprofile.local

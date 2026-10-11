@@ -47,6 +47,8 @@ rgfiles() {
 	echo "count: ${#files[@]}"
 }
 
+# Completion
+autoload -Uz compinit && compinit
 
 # Keybindings
 bindkey -e
@@ -131,3 +133,6 @@ setopt no_beep
 # Initialization
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
+
+# Local settings
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
