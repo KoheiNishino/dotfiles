@@ -108,6 +108,10 @@ vim.keymap.set("n", "<leader>gp", function()
 	require("gitsigns").preview_hunk()
 end, { desc = "Git preview hunk" })
 vim.keymap.set("n", "<leader>gg", function()
+	local ok, err = pcall(vim.cmd, "update")
+	if not ok then
+		vim.notify("update failed: " .. tostring(err), vim.log.levels.WARN)
+	end
 	vim.cmd("terminal lazygit")
 end, { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>yp", function()
