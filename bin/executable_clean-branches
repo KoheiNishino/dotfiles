@@ -1,17 +1,18 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 usage() {
   cat <<EOF
 Usage:
-  clean-branches              Delete all merged local branches except main/master.
-  clean-branches -n           Dry run.
-  clean-branches --dry-run    Dry run.
+  clean-branches              Fetch --prune, then delete local branches whose upstream is gone.
+  clean-branches -n           Dry run (list only).
+  clean-branches --dry-run    Dry run (list only).
   clean-branches -h           Show help.
   clean-branches --help       Show help.
 EOF
 }
 
-current_branch=$(git branch --show-current)
+dry_run=false
 
 case "${1:-}" in
   "")
@@ -24,21 +25,23 @@ case "${1:-}" in
     exit 0
     ;;
   *)
-    echo "Error: unknown option: $1"
+    echo "Error: unknown option: $1" >&2
     usage
     exit 1
     ;;
 esac
 
-if [[ "$current_branch" != "main" && "$current_branch" != "master" ]]; then
-  echo "Error: current branch must be main or master."
-  exit 1
-fi
+git fetch --prune
 
-branches=$(git branch --merged | sed 's/^[* ]*//' | grep -vE '^(main|master)$' || true)
+branches=$(git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads | awk '$2=="[gone]"{print $1}')
+
+if [[ -z "$branches" ]]; then
+  echo "No branches to delete."
+  exit 0
+fi
 
 if [[ "$dry_run" == true ]]; then
   echo "$branches"
-elif [[ -n "$branches" ]]; then
-  git branch -d $branches
+else
+  echo "$branches" | xargs git branch -D
 fi
